@@ -1,8 +1,8 @@
 <script setup>
+import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 import Table from '@/components/Table.vue'
-import { ref } from 'vue'
 
 const route = useRoute()
 
@@ -54,7 +54,7 @@ const meta = ref({
 })
 
 const tableFields = [
-  { name: 'id', header: 'ID', alignment: 'left' },
+  { name: 'id', header: 'ID', alignment: 'right' },
   { name: 'name', header: 'Name', alignment: 'right' },
   { name: 'price', header: 'Price', alignment: 'right' },
   { name: 'quantity', header: 'Quantity', alignment: 'right' },
