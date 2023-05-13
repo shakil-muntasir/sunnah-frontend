@@ -1,8 +1,13 @@
-<script setup>
+<script>
+import Layout from '@/components/Layout.vue'
+export default {
+  name: "App",
+  components: {
+    Layout,
+  }
+}
 </script>
 
 <template>
-  <div>
-    hello
-  </div>
+  <Layout/>
 </template>
