@@ -1,7 +1,34 @@
 <script setup>
-import { useRoute } from 'vue-router'
+import axios from 'axios'
+import { ref, onMounted } from 'vue';
+import { useRoute, useRouter } from 'vue-router'
 
 const route = useRoute()
+const router = useRouter()
+
+const userData = ref({
+  Name: '',
+  Type: ''
+})
+
+onMounted(() => {
+  const userEmail = localStorage.getItem('userEmail')
+  if(localStorage.getItem('authToken')) {
+    axios.get(`api/user?email=${userEmail}`)
+    .then(response => {
+      userData.value = response.data
+    })
+    .catch(error => {
+      console.log(error.response);
+    })
+  }
+})
+
+const submitLogout = () => {
+  localStorage.removeItem('authToken')
+  localStorage.removeItem('userName')
+  router.push('/login')
+}
 </script>
 
 <template>
@@ -37,6 +64,11 @@ const route = useRoute()
           <img src="../assets/icons/settings.png" class="h-6 w-6" />
           <span class="ml-7 text-gray-900 text-lg">Settings</span>
         </RouterLink>
+
+        <button @click="submitLogout" class="flex items-center mx-6 hover:bg-slate-100 px-7 py-1 rounded-md">
+          <img src="../assets/icons/logout.png" class="h-6 w-6" />
+          <span class="ml-7 text-gray-900 text-lg">Logout</span>
+        </button>
       </nav>
     </aside>
 
@@ -47,8 +79,8 @@ const route = useRoute()
         <div class="flex flex-col items-center justify-center">
           <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2.5&w=144&h=144&q=80" alt="User" class="h-28 w-28 rounded-full">
           
-          <p class="mt-2 font-semibold tracking-wide">Jane Smith</p>
-          <span class="text-sm font-light">Employee</span>
+          <p class="mt-2 font-semibold tracking-wide">{{ userData.Name }}</p>
+          <span class="text-sm font-light">{{ userData.Type }}</span>
         </div>
       </header>
       
