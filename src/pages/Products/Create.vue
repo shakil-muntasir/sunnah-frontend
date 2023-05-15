@@ -1,16 +1,27 @@
 <script setup>
 import { ref } from 'vue';
+import { useRouter } from 'vue-router'
+import axios from 'axios'
+
+const router = useRouter()
+
 const product = ref({
     Name: '',
     Price: '',
     Quantity: '',
     CategoryId: '',
 })
+
+const handleSubmit = () => {
+  axios.post(`/api/products/create`, product.value)
+    .then(() => router.push('/products'))
+    .catch(error => console.log(error.response))
+}
 </script>
 
 <template>
   <div>
-    <form class="max-w-full px-4 sm:px-6 lg:px-12">
+    <form @submit.prevent="handleSubmit" class="max-w-full px-4 sm:px-6 lg:px-12">
         <p class="text-2xl tracking-wide text-gray-900">Create product</p>
         <div class="mt-4 flex flex-col space-y-4">
         <p v-if="errorMessage" class="text-red-600 mt-2">{{ errorMessage }}</p>
@@ -26,12 +37,12 @@ const product = ref({
 
         <div>
           <label for="quantity" class="block font-medium text-sm text-gray-700">Quantity</label>
-          <input type="text" name="quantity" id="quantity" v-model="product.Price" placeholder="$99.99" class="px-3 py-2 border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" />
+          <input type="text" name="quantity" id="quantity" v-model="product.Quantity" placeholder="Quantity" class="px-3 py-2 border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" />
         </div>
 
         <div>
           <label for="category-id" class="block font-medium text-sm text-gray-700">Category ID</label>
-          <input type="text" name="category-id" id="category-id" v-model="product.CategoryId" placeholder="$99.99" class="px-3 py-2 border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" />
+          <input type="text" name="category-id" id="category-id" v-model="product.CategoryId" placeholder="Category ID" class="px-3 py-2 border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" />
         </div>
 
         <div class="flex items-center justify-end">

@@ -15,12 +15,8 @@ onMounted(() => {
   const userEmail = localStorage.getItem('userEmail')
   if(localStorage.getItem('authToken')) {
     axios.get(`api/user?email=${userEmail}`)
-    .then(response => {
-      userData.value = response.data
-    })
-    .catch(error => {
-      console.log(error.response);
-    })
+    .then(response => userData.value = response.data)
+    .catch(error => console.log(error.response))
   }
 })
 
@@ -77,7 +73,7 @@ const submitLogout = () => {
         <h1 class="font-semibold text-3xl tracking-wide uppercase text-gray-900">{{ route.meta.title }}</h1>
 
         <div class="flex flex-col items-center justify-center">
-          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2.5&w=144&h=144&q=80" alt="User" class="h-28 w-28 rounded-full">
+          <img src="../assets/avatar.gif" alt="User" class="h-28 w-28 rounded-full">
           
           <p class="mt-2 font-semibold tracking-wide">{{ userData.Name }}</p>
           <span class="text-sm font-light">{{ userData.Type }}</span>
@@ -91,7 +87,7 @@ const submitLogout = () => {
 </template>
 
 <style scoped>
-.router-link-exact-active {
+.router-link-active {
   @apply bg-slate-100
 }
 </style>

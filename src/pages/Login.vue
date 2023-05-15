@@ -21,11 +21,8 @@ const submitLogin = () => {
 
       router.push("/")
     })
-    .catch(error => {
-      errorMessage.value = error.response.data.Message
-    })
+    .catch(error => errorMessage.value = error.response.data.Message)
 }
-
 </script>
 
 <template>

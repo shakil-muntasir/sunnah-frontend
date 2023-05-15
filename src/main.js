@@ -20,6 +20,8 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+    document.title = `${to.meta.title} - Sunnah Station` || "Sunnah Station";
+    
     if(to.path != '/login' && to.meta.auth && !token){
         next('/login')
     } else if (from.path == '/login' && to.meta.auth && token){
