@@ -4,7 +4,7 @@ import Pagination from './Pagination.vue'
 const props = defineProps({
     fields: Array,
     data: Array,
-    meta: Object
+    // meta: Object
 })
 
 const classes = field => {
@@ -69,7 +69,7 @@ const statusStyles = {
                 </table>
 
                 <!-- Pagination -->
-                <Pagination :meta="meta" />
+                <!-- <Pagination :meta="meta" /> -->
             </div>
         </div>
     </div>

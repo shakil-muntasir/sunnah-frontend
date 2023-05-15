@@ -74,7 +74,7 @@ const submitLogout = () => {
 
     <main class="bg-gray-50 flex-1 p-3">
       <header class="ml-12 flex justify-between items-center">
-        <h1 class="font-semibold text-3xl tracking-wide">{{ route.meta.title }}</h1>
+        <h1 class="font-semibold text-3xl tracking-wide uppercase text-gray-900">{{ route.meta.title }}</h1>
 
         <div class="flex flex-col items-center justify-center">
           <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2.5&w=144&h=144&q=80" alt="User" class="h-28 w-28 rounded-full">
